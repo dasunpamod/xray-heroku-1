@@ -1,11 +1,14 @@
 #!/bin/sh
-# config xray
+
+#Config xray
+
+rm -rf /etc/xray/config.json
 cat << EOF > /etc/xray/config.json
 {
-  "inbounds":[
+  "inbounds": [
     {
       "port": $PORT,
-      "protocol": "$PROTOCOL",
+      "protocol": "vless",
       "settings": {
         "decryption": "none",
         "clients": [
@@ -27,5 +30,6 @@ cat << EOF > /etc/xray/config.json
 }
 EOF
 
-# run xray
-/usr/bin/xray run -config /etc/xray/config.json
+#run xray
+
+xray -c /etc/xray/config.json
